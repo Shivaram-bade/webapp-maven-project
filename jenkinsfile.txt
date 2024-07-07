@@ -1,0 +1,23 @@
+Pipeline{
+	agent any
+	Environment{
+	PATH = "$PATH:"
+}
+	stages{
+		stage{
+			steps('Getcode'){
+				git ""
+}
+}
+		stage{
+			steps('Build'){
+				sh 'mvn clean package'
+}
+}
+
+
+
+
+
+}
+}
