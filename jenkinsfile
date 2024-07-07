@@ -1,21 +1,20 @@
-Pipeline{
-	agent any
-	Environment{
-	PATH = "$PATH:/home/ec2-user/apache-maven-3.9.8/bin"
-}
-	stages{
-		stage{
-			steps('Getcode'){
-				git branch : 'main'
-				url: "https://github.com/Shivaram-bade/webapp-maven-project.git"
-}
-}
-		stage{
-			steps('Build'){
-				sh 'mvn clean package'
-}
-}
+pipeline {
+    agent any
+        environment{
+            PATH = "$PATH:/opt/apache-maven-3.9.8/bin"
+    }
 
-
-}
+    stages {
+        stage('gitcode') {
+            steps {
+               
+                git branch: 'main', credentialsId: '30bca632-5186-4b9d-823b-ef7076983819', url: 'https://github.com/Shivaram-bade/webapp-maven-project.git'
+            }
+        }
+        stage('Build'){
+            steps{
+                sh 'mvn clean package'
+            }
+        }
+    }
 }
